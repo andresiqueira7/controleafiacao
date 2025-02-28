@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Bits</title>
+    <script>
+        function salvarDados() {
+            let dados = {
+                numero: document.getElementById("numero").value,
+                tipo: document.getElementById("tipo").value,
+                marca: document.getElementById("marca").value,
+                afiacao_interna: document.getElementById("afiacao_interna").value,
+                afiacao_externa: document.getElementById("afiacao_externa").value,
+                operador: document.getElementById("operador").value,
+                data: document.getElementById("data").value
+            };
+
+            fetch('/salvar', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dados)
+            })
+            .then(response => response.json())
+            .then(data => alert(data.mensagem))
+            .catch(error => console.error('Erro:', error));
+        }
+    </script>
+</head>
+<body>
+    <h2>Cadastro de Bits</h2>
+    <input id="numero" placeholder="Número do Bit"><br>
+    <input id="tipo" placeholder="Tipo (T51/T60)"><br>
+    <input id="marca" placeholder="Marca"><br>
+    <input id="afiacao_interna" type="number" placeholder="Afiação Interna"><br>
+    <input id="afiacao_externa" type="number" placeholder="Afiação Externa"><br>
+    <input id="operador" placeholder="Operador"><br>
+    <input id="data" type="date"><br>
+    <button onclick="salvarDados()">Salvar</button>
+</body>
+</html>
