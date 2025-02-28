@@ -1,10 +1,9 @@
-import sqlite3
 from flask import Flask, request, jsonify, render_template
+import sqlite3
 
 app = Flask(__name__)
 
 def criar_banco():
-    """Cria o banco de dados e a tabela se não existir"""
     conn = sqlite3.connect("controlebits.db")
     cursor = conn.cursor()
     cursor.execute('''
@@ -24,7 +23,6 @@ def criar_banco():
 
 @app.route('/salvar', methods=['POST'])
 def salvar_dados():
-    """Recebe os dados do formulário e salva no banco"""
     data = request.json
     conn = sqlite3.connect("controlebits.db")
     cursor = conn.cursor()
@@ -39,7 +37,6 @@ def salvar_dados():
 
 @app.route('/dados', methods=['GET'])
 def visualizar_dados():
-    """Retorna os dados cadastrados no banco"""
     conn = sqlite3.connect("controlebits.db")
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM controlebits")
