@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 
@@ -47,12 +47,10 @@ def visualizar_dados():
     conn.close()
     return jsonify(dados)
 
-if __name__ == '__main__':
-    criar_banco()
-    app.run(host='0.0.0.0', port=10000)
-
-from flask import render_template
-
 @app.route('/')
 def home():
     return render_template("index.html")
+
+if __name__ == '__main__':
+    criar_banco()
+    app.run(host='0.0.0.0', port=10000)
