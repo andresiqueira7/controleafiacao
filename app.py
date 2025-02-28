@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify, render_template
 app = Flask(__name__)
 
 # URL de conexão do PostgreSQL (substitua pela sua do Supabase)
-DATABASE_URL = os.getenv("DATABASE_URL", "postgres://user:password@host:port/dbname")
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://andre:rC086lwOW1Kwmf1cMwJtecXx3BEhMZUr@dpg-cv0ulavnoe9s73eg8vr0-a.oregon-postgres.render.com/controledebits")
 
 def criar_banco():
     conn = psycopg2.connect(DATABASE_URL)
